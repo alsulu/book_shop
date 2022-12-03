@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "start": "vite",
+    "build": "cross-env BUILD-TYPE=dev vite build",
+    "serve": "vite preview --port 3000",
+    "server": "json-server --port 1111 ./db.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^1.8.2",
+    "cross-env": "^7.0.3",
+    "sass": "^1.52.1",
+    "vite": "^2.9.9",
+    "vite-aliases": "^0.9.2"
+  },
+  "dependencies": {
+    "route-parser": "^0.0.5"
+  }
+}

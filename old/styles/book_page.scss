@@ -1,0 +1,275 @@
+$blue-color: #53889D;
+$baby-blue-color:#BBD1D9;
+$yellow-color:#F2D05C;
+$soft-pink-color:#F3A492;
+$blush-color:#D96F6E;
+$white-color:#FFFFFF;
+$gray-gradient-color:#C4C4C4;
+$light-gray-color:#828282;
+$dark-gray-color:#333333;
+$black-color: rgba(0, 0, 0, 1);
+$header-text-color:#4F4F4F;
+$heading-font:'Montserrat',
+sans-serif;
+$names-font:'Playfair Display',
+serif;
+
+header {
+    display: grid;
+    grid-template-rows: 8vh;
+    grid-template-columns: 1fr 0.1fr 0.1fr;
+    align-items: center;
+    box-shadow: 0px 4px 16px rgba(78, 55, 55, 0.15);
+    position: sticky;
+    top: 0;
+    background-color: white;
+
+    #header_button_back {
+        margin-left: 10%;
+    }
+
+    button {
+        border-color: $white-color !important;
+        background-color: $white-color !important;
+        border-style: none
+    }
+
+    #header_button_loupe {
+        margin-right: 25px;
+    }
+
+    #header_button_bag {
+        margin-right: 25px;
+    }
+}
+
+.wrapper {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    &__container-1 {
+        margin-top: 5%;
+        display: grid;
+
+        @media screen and (max-width:320px) {
+            grid-template-rows: 13.5em 5em 2em 1.2em 3em 6em;
+        }
+
+        @media screen and (min-width:321px) {
+            grid-template-rows: 13.5em 2.5em 2em 1.2em 3em 7em;
+        }
+
+        justify-items: center;
+
+        &__pic-box {
+            width: 100%;
+            text-align: center;
+
+            &__book-1 {
+                max-width: 100%;
+            }
+        }
+
+        &__text-book-title,
+        &__text-price {
+            text-align: center;
+            font-size: 1.563em;
+            font-family: $names-font;
+            font-weight: 700;
+            color: $black-color;
+        }
+
+        &__text-edition {
+            font-family: $heading-font;
+            font-size: 0.75em;
+            font-weight: 400;
+            color: $light-gray-color;
+        }
+
+        @media screen and (max-width:320px) {
+
+            &__text-author,
+            &__text-about {
+                font-family: $heading-font;
+                font-size: 0.9em;
+                font-weight: 400;
+                line-height: 1.5em;
+
+                &__link {
+                    color: $blue-color;
+                }
+            }
+        }
+
+        @media screen and (min-width:321px) {
+
+            &__text-author,
+            &__text-about {
+                font-family: $heading-font;
+                font-size: 1em;
+                font-weight: 400;
+                line-height: 1.5em;
+
+                &__link {
+                    color: $blue-color;
+                }
+            }
+        }
+
+    }
+
+    &__container-2 {
+        display: grid;
+        height: 30%;
+        justify-items: center;
+
+        &__btn-add-to-cart,
+        &__btn-wishlist {
+            border: none;
+            border-radius: 0.5em;
+            text-transform: uppercase;
+            color: $white-color;
+            font-family: $heading-font;
+            font-size: 1em;
+            font-weight: 600;
+            height: 2.5em;
+            width: 18.5em;
+        }
+
+        &__btn-add-to-cart {
+            background-color: $blush-color;
+        }
+
+        &__btn-wishlist {
+            background-color: $soft-pink-color;
+            margin-top: 0.5em;
+
+        }
+
+        &__text-publisher {
+            font-family: $heading-font;
+            font-size: 0.75em;
+            font-weight: 400;
+            color: $light-gray-color;
+            margin-top: 3vh;
+        }
+
+        &__text-genres-box {
+            margin-bottom: -1.5em;
+            margin-top: -1.5em;
+
+            &__text {
+                font-family: $heading-font;
+                font-size: 1em;
+                font-weight: 700;
+                color: $header-text-color;
+            }
+        }
+
+        &__btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.625em;
+
+            &__today {
+                height: 2em;
+                width: 11em;
+                background: linear-gradient(90deg, $yellow-color 0%, $soft-pink-color 100%);
+
+            }
+
+            &__fiction {
+                height: 2em;
+                width: 12em;
+                background: linear-gradient(90deg, $blue-color 0%, $baby-blue-color 100%);
+
+            }
+
+            &__today,
+            &__fiction {
+                font-family: $heading-font;
+                font-size: 0.75em;
+                font-weight: 700;
+                color: $white-color;
+                border-radius: 0.5em;
+                border: none;
+
+            }
+
+        }
+
+        &__text-share-box {
+            margin-bottom: -1.5em;
+
+            &__text {
+                font-family: $heading-font;
+                font-size: 1em;
+                font-weight: 700;
+                color: $header-text-color;
+            }
+        }
+
+        &__icons-social {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 1fr;
+            gap: 1.25em;
+        }
+
+    }
+
+    .container-3 {
+        margin-top: 0.5em;
+        margin-bottom: 2em;
+        display: grid;
+
+        &__text-title {
+            font-family: $names-font;
+            font-size: 1.25em;
+            font-weight: 700;
+            color: $black-color;
+            margin-left: 15px;
+        }
+
+        &__books {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            max-width: 90vw;
+            margin-left: 15px;
+
+            &__item {
+                scroll-snap-align: start;
+                margin-right: 15px;
+
+                &__name {
+                    font-family: $names-font;
+                    font-size: 1em;
+                    font-weight: 700;
+                    color: $black-color;
+                }
+
+                &__author {
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 400;
+                    color: $light-gray-color;
+                    margin-top: -12px;
+                }
+
+                &__price {
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 600;
+                    color: $blush-color;
+                    margin-top: -9px;
+                }
+
+            }
+        }
+    }
+}

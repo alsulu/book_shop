@@ -1,0 +1,3 @@
+<main-nav type="post"></main-nav>
+<div>Main template (new)</div>
+<list-component title="Lastest" list-type="book"></list-component>

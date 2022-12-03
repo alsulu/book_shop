@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/profile_page.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <script src="styles/profile_page.js"></script>
+    <link rel="stylesheet" href="styles/footer_allpages.css">
+    <title>Profile page</title>
+</head>
+
+<body>
+    <header>
+        <div id="header_text"> Profile</div>
+        <button><img id="header_button_loupe" src="assets/loupe.png" alt="Кнопка «Лупа»"></button>
+        <button><img id="header_button_bag" src="assets/bag.png" alt="Кнопка «Корзина»"></button>
+    </header>
+    <main>
+        <div class="profile_about">
+            <div class="profile_about__img"><img src="assets/avatar.png" alt="Аватарка профиля"></div>
+            <div class="profile_about__name">Jessica Mapleton</div>
+            <div class="profile_about__place">CAPE TOWN, SOUTH AFRICA</div>
+            <div class="profile_about__statistic">
+                <div class="profile_about__statistic__following">
+                    Following
+                </div>
+                <div class="profile_about__statistic__following_count">
+                    2,1k
+                </div>
+                <div class="profile_about__statistic__followers">
+                    Followers
+                </div>
+                <div class="profile_about__statistic__followers_count">
+                    945k
+                </div>
+            </div>
+        </div>
+        <div class="genres">
+            <div class="genres__text">Favorite Genres</div>
+            <div class="genres__buttons">
+                <button class="genres__buttons__1">African</button>
+                <button class="genres__buttons__2">Classics</button>
+                <button class="genres__buttons__3">Contemporary</button>
+                <button class="genres__buttons__4">Feminst Literature</button>
+                <button class="genres__buttons__5">Memoirs</button>
+                <button class="genres__buttons__6">Psychological Thrillers</button>
+                <button class="genres__buttons__7">True Crime</button>
+            </div>
+        </div>
+        <div class="purchased_books">
+            <div class="purchased_books__text">Purchased Books
+                <a class="purchased_books__text__link"> 19</a>
+            </div>
+            <div class="purchased_books__container">
+                <div class="purchased_books__container__item">
+                    <img class="purchased_books__container__item__img" src="assets/Purchasedbook1.png"
+                        alt="Обложка книги 1">
+                    <div class="purchased_books__container__item__title"> Little Fires Everywhere</div>
+                    <div class="purchased_books__container__item__author"> Celeste Ng</div>
+                </div>
+                <div class="purchased_books__container__item">
+                    <img class="purchased_books__container__item__img" src="assets/Purchasedbook2.png"
+                        alt="Обложка книги 2">
+                    <div class="purchased_books__container__item__title">All the Pretty Horses</div>
+                    <div class="purchased_books__container__item__author"> Cormac McCarthy</div>
+                </div>
+                <div class="purchased_books__container__item">
+                    <img class="purchased_books__container__item__img" src="assets/Purchasedbook3.png"
+                        alt="Обложка книги 3">
+                    <div class="purchased_books__container__item__title">The Handmaid’s<br>Tale</div>
+                    <div class="purchased_books__container__item__author">Margaret Atwood</div>
+                </div>
+                <div class="purchased_books__container__item">
+                    <img class="purchased_books__container__item__img" src="assets/Purchasedbook4.png"
+                        alt="Обложка книги 3">
+                    <div class="purchased_books__container__item__title">The Great<br>Gatsby</div>
+                    <div class="purchased_books__container__item__author">F. Scott Fitzgerald</div>
+                </div>
+            </div>
+            <div class="purchased_books__link_container">
+                <a class="purchased_books__link_container__text">
+                    View all Purchased Books &nbsp &nbsp </a>
+                <img class="purchased_books__link_container__img" src="assets/arrow.png" alt="arrow-icon">
+            </div>
+        </div>
+        <div class="wishlist">
+            <div class="wishlist__text">Wishlist
+                <a class="wishlist__text__link"> 24</a>
+            </div>
+            <div class="wishlist__container">
+                <img class="wishlist__container__img_book1" src="assets/wishlist_b1.png" alt="book_1">
+                <img class="wishlist__container__img_book2" src="assets/wishlist_b2.png" alt="book_2">
+                <img class="wishlist__container__img_book3" src="assets/wishlist_b3.png" alt="book_3">
+                <img class="wishlist__container__img_book4" src="assets/wishlist_b4.png" alt="book_4">
+                <img class="wishlist__container__img_book5" src="assets/wishlist_b5.png" alt="book_5">
+                <img class="wishlist__container__img_book6" src="assets/wishlist_b6.png" alt="book_6">
+            </div>
+            <div class="wishlist__link_container">
+                <a class="wishlist__link_container__text">
+                    View all Wishlist Books &nbsp &nbsp</a>
+                <img class="wishlist__link_container__img" src="assets/arrow.png" alt="arrow-icon">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer_icon"><img src="./assets/footer_icon12.svg" alt="home-icon">
+            <a class="footer_link" href="home_page.html">home</a>
+        </div>
+        <div class="footer_icon"><img src="./assets/footer_icon2.svg" alt="browse-icon">
+            <a class="footer_link">browse</a>
+        </div>
+        <div class="footer_icon"><img src="./assets/footer_icon3.svg" alt="wishlist-icon">
+            <a class="footer_link">wishlist</a>
+        </div>
+        <div class="footer_icon"><img src="./assets/footer_icon42.svg" alt="profile-icon">
+            <a class="footer_link" href="profile_page.html">profile</a>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/cart_page.css">
+    <link rel="stylesheet" href="styles/footer_allpages.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <title>Cart page</title>
+</head>
+<body>
+    <header>
+        <div id="header_button_back">
+            <a href="home_page.html">
+                <img src="assets/button_back.png" alt="Кнопка «Назад»">
+            </a>
+        </div>
+        <button><img id="header_button_loupe" src="assets/loupe.png" alt="Кнопка «Лупа»"></button>
+        <a href="cart_page.html"><div class="cart-icon"><img id="header_button_bag" src="assets/bag.png" alt="Кнопка «Корзина»"><span id="mini-cart"></span></div></a>
+    </header>
+    
+    <main>
+        <div class="cart">
+            <h1>Cart</h1>
+            <div class="order">
+
+            </div>
+            <button id="checkout" hidden>Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer_icon"><img src="./assets/footer_icon1.svg" alt="home-icon">
+            <a class="footer_link" href="home_page.html">home</a>
+        </div>
+        <div class="footer_icon"><img src="./assets/footer_icon2.svg" alt="browse-icon">
+            <a class="footer_link">browse</a>
+        </div>
+        <div class="footer_icon"><img src="./assets/footer_icon3.svg" alt="wishlist-icon">
+            <a class="footer_link" >wishlist</a>
+        </div>
+        <div class="footer_icon"><img src="./assets/footer_icon4.svg" alt="profile-icon">
+            <a class="footer_link" href="profile_page.html">profile</a>
+        </div>
+    </footer>
+
+    <script src="names.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

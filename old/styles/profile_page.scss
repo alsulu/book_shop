@@ -1,0 +1,683 @@
+$blue-color: #53889D;
+$baby-blue-color:#BBD1D9;
+$yellow-color:#F2D05C;
+$soft-pink-color:#F3A492;
+$blush-color:#D96F6E;
+$white-color:#FFFFFF;
+$gray-gradient-color:#C4C4C4;
+$light-gray-color:#828282;
+$dark-gray-color:#333333;
+$header-text-color:#4F4F4F;
+$heading-font:'Montserrat',
+sans-serif;
+$names-font:'Playfair Display',
+serif;
+
+header {
+    display: grid;
+    grid-template-rows: 8vh;
+    grid-template-columns: 1fr 0.1fr 0.1fr;
+    align-items: center;
+    box-shadow: 0px 4px 16px rgba(78, 55, 55, 0.15);
+    position: sticky;
+    top: 0;
+    background-color: white;
+
+    #header_text {
+        font-size: 1em;
+        color: $header-text-color;
+        font-family: $heading-font;
+        margin-left: 25px;
+        grid-row: 1/2;
+        grid-column: 1/2;
+        text-align: start;
+        font-weight: 700;
+    }
+
+    button {
+        border-color: $white-color !important;
+        background-color: $white-color !important;
+        border-style: none
+    }
+
+    #header_button_loupe {
+        margin-right: 25px;
+    }
+
+    #header_button_bag {
+        margin-right: 25px;
+    }
+}
+
+main {
+    display: grid;
+
+    @media screen and (max-width:375px) {
+        grid-template-rows: 360px 180px 385px 430px;
+    }
+
+    @media screen and (max-width:414px) and (min-width:376px) {
+        grid-template-rows: 360px 180px 390px 450px;
+    }
+
+    @media screen and (min-width:415px) {
+        grid-template-rows: 360px 180px 395px 450px;
+    }
+
+    grid-template-columns: 1fr;
+
+    .profile_about {
+        grid-row: 1/2;
+        grid-column: 1/2;
+        display: grid;
+        grid-template-rows: 170px 50px 20px 100px;
+        grid-template-columns: 1fr;
+
+        &__img {
+            display: grid;
+            grid-row: 1/2;
+            grid-column: 1/2;
+            align-items: end;
+            justify-items: center;
+        }
+
+        &__name {
+            display: grid;
+            grid-row: 2/3;
+            grid-column: 1/2;
+            align-items: end;
+            font-size: 1.953em;
+            font-family: $names-font;
+            justify-items: center;
+        }
+
+        &__place {
+            display: grid;
+            grid-row: 3/4;
+            grid-column: 1/2;
+            font-size: 0.625em;
+            font-family: $heading-font;
+            color: $light-gray-color;
+            letter-spacing: 0.16em;
+            justify-items: center;
+            align-items: end;
+        }
+
+        &__statistic {
+            display: grid;
+            grid-template-rows: 45px 45px;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
+            align-items: end;
+            margin-top: -7px;
+
+            &__following {
+                grid-row: 1/2;
+                grid-column: 1/2;
+                font-family: $heading-font;
+                font-size: 0.625em;
+                margin-left: 80px;
+
+            }
+
+            &__following_count {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                font-family: $heading-font;
+                font-weight: bold;
+                font-size: 1.25em;
+                margin-left: 80px;
+                margin-bottom: 15px;
+            }
+
+            &__followers {
+                grid-row: 1/2;
+                grid-column: 2/3;
+                font-family: $heading-font;
+                font-size: 10px;
+                margin-right: 80px;
+            }
+
+            &__followers_count {
+                grid-row: 2/3;
+                grid-column: 2/3;
+                font-family: $heading-font;
+                font-weight: bold;
+                font-size: 1.25em;
+                margin-right: 80px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .genres {
+        grid-row: 2/3;
+        grid-column: 1/2;
+        display: grid;
+        grid-template-rows: 30px 45px;
+        grid-template-columns: 1fr;
+        margin-left: 20px;
+
+        &__text {
+            grid-row: 1/2;
+            grid-column: 1/2;
+            color: $dark-gray-color;
+            font-weight: 800;
+            font-size: 1em;
+            font-family: $heading-font;
+        }
+
+        &__buttons {
+            grid-column: 1/2;
+
+            &__1 {
+                background: linear-gradient(90deg, $blue-color 0%, $baby-blue-color 100%);
+            }
+
+            &__2 {
+                background: linear-gradient(90deg, $soft-pink-color 0%, $blush-color 100%), $gray-gradient-color;
+            }
+
+            &__3 {
+                background: linear-gradient(90deg, $yellow-color 0%, $soft-pink-color 100%);
+            }
+
+            &__4 {
+                background: linear-gradient(90deg, $yellow-color 0%, $soft-pink-color 100%);
+            }
+
+            &__5 {
+                background: linear-gradient(90deg, $baby-blue-color 0%, $yellow-color 92.86%);
+            }
+
+            &__6 {
+                background: linear-gradient(90deg, $blush-color 0%, $yellow-color 100%);
+            }
+
+            &__7 {
+                background: linear-gradient(90deg, $blue-color 0%, $baby-blue-color 100%);
+            }
+
+            button {
+                border-color: $white-color !important;
+                border-style: none;
+                margin-right: 7px;
+                margin-top: 7px;
+                border-radius: 8px;
+                color: $white-color;
+                font-weight: bold;
+                font-size: 0.75em;
+                font-family: $heading-font;
+                padding: 6px 18px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .purchased_books {
+        grid-row: 3/4;
+        grid-column: 1/2;
+        margin-left: 20px;
+
+        &__text {
+            grid-row: 1/2;
+            color: $dark-gray-color;
+            font-weight: 800;
+            font-size: 1em;
+            font-family: $heading-font;
+
+            &__link {
+                text-decoration: none;
+                color: $blue-color;
+                font-family: $heading-font;
+                font-size: 0.75em;
+                font-weight: 100;
+            }
+        }
+
+        &__container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            max-width: 90vw;
+
+            &__item {
+                scroll-snap-align: start;
+                margin-right: 10px;
+                margin-top: 20px;
+
+                &__img {
+                    align-self: stretch;
+                }
+
+                &__title {
+                    margin-top: 7px;
+                    font-family: $names-font;
+                    font-weight: bold;
+                    font-size: 1em;
+                    display: grid;
+                    align-items: flex-end;
+                }
+
+                &__author {
+                    margin-top: 2px;
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    color: $header-text-color;
+                }
+            }
+        }
+
+        &__link_container {
+            display: grid;
+            margin-top: 18px;
+            text-align: center;
+
+            &__text {
+                font-family: $heading-font;
+                font-weight: 600;
+                font-size: 0.75em;
+                color: $blush-color;
+                text-decoration: underline;
+            }
+
+            @media screen and (max-width:414px) and (min-width:412px) {
+                &__img {
+                    position: absolute;
+                    left: 295px;
+                    margin-top: -0.2px;
+                }
+            }
+
+            @media screen and (max-width:411px) and (min-width:376px) {
+                &__img {
+                    position: absolute;
+                    left: 295px;
+                    margin-top: -0.1px;
+                }
+            }
+
+            @media screen and (max-width:375px) and (min-width:361px) {
+                &__img {
+                    position: absolute;
+                    left: 276px;
+                    margin-top: -0.3px;
+                }
+            }
+
+            @media screen and (max-width:360px) and (min-width:321px) {
+                &__img {
+                    position: absolute;
+                    left: 268px;
+                    margin-top: -0.3px;
+                }
+            }
+
+            @media screen and (max-width:320px) {
+                &__img {
+                    position: absolute;
+                    left: 248px;
+                    margin-top: -0.3px;
+                }
+            }
+
+            @media screen and (min-width:415px) {
+                &__img {
+                    display: none;
+                }
+
+                &__text {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:320px) {
+        .wishlist {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 40px 350px 20px;
+
+            &__text {
+                grid-row: 1/2;
+                grid-column: 1/2;
+                color: $dark-gray-color;
+                font-weight: 800;
+                font-size: 1em;
+                font-family: $heading-font;
+
+                &__link {
+                    text-decoration: none;
+                    color: $blue-color;
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 100;
+                }
+            }
+
+            &__container {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                display: grid;
+                grid-template-columns: 104px 104px 104px;
+                grid-template-rows: 160px 160px;
+                justify-content: space-around;
+
+                &__img_book4 {
+                    margin-top: 4px;
+                }
+
+                &__img_book5 {
+                    margin-top: -19px;
+                }
+
+                &__img_book6 {
+                    margin-top: -7px;
+                }
+            }
+
+            &__link_container {
+                grid-row: 3/4;
+                text-align: center;
+
+                &__text {
+                    font-family: $heading-font;
+                    font-weight: 600;
+                    font-size: 0.75em;
+                    color: $blush-color;
+                    text-decoration: underline;
+                }
+
+                &__img {
+                    position: absolute;
+                    left: 230px;
+                    margin-top: 3px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:360px) and (min-width:321px) {
+        .wishlist {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 40px 350px 20px;
+            margin-left: 20px;
+
+            &__text {
+                grid-row: 1/2;
+                grid-column: 1/2;
+                color: $dark-gray-color;
+                font-weight: 800;
+                font-size: 1em;
+                font-family: $heading-font;
+
+                &__link {
+                    text-decoration: none;
+                    color: $blue-color;
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 100;
+                }
+            }
+
+            &__container {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                display: grid;
+                grid-template-columns: 104px 104px 104px;
+                grid-template-rows: 160px 160px;
+                justify-content: space-around;
+
+                &__img_book4 {
+                    margin-top: 9px;
+                }
+
+                &__img_book5 {
+                    margin-top: -15px;
+                }
+
+                &__img_book6 {
+                    margin-top: -2px;
+                }
+            }
+
+            &__link_container {
+                grid-row: 3/4;
+                text-align: center;
+
+                &__text {
+                    font-family: $heading-font;
+                    font-weight: 600;
+                    font-size: 0.75em;
+                    color: $blush-color;
+                    text-decoration: underline;
+                }
+
+                @media screen and (max-width:360px) {
+                    &__img {
+                        position: absolute;
+                        left: 260px;
+                        margin-top: 3px;
+                    }
+                }
+
+                @media screen and (max-width:320px) {
+                    &___img {
+                        position: absolute;
+                        left: 247px;
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:375px) and (min-width:365px) {
+        .wishlist {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 40px 350px 20px;
+            margin-left: 20px;
+
+            &__text {
+                grid-row: 1/2;
+                grid-column: 1/2;
+                color: $dark-gray-color;
+                font-weight: 800;
+                font-size: 1em;
+                font-family: $heading-font;
+
+                &__link {
+                    text-decoration: none;
+                    color: $blue-color;
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 100;
+                }
+            }
+
+            &__container {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                display: grid;
+                grid-template-columns: 104px 104px 104px;
+                grid-template-rows: 160px 160px;
+                justify-content: space-around;
+
+                &__img_book4 {
+                    margin-top: 13px;
+                }
+
+                &__img_book5 {
+                    margin-top: -11px;
+                }
+
+                &__img_book6 {
+                    margin-top: 1px;
+                }
+            }
+
+            &__link_container {
+                grid-row: 3/4;
+                text-align: center;
+
+                &__text {
+                    font-family: $heading-font;
+                    font-weight: 600;
+                    font-size: 0.75em;
+                    color: $blush-color;
+                    text-decoration: underline;
+                }
+
+                &__img {
+                    position: absolute;
+                    left: 268px;
+                    margin-top: 3px;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width:411px) and (max-width:414px) {
+        .wishlist {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 40px 360px 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+
+            &__text {
+                grid-row: 1/2;
+                grid-column: 1/2;
+                color: $dark-gray-color;
+                font-weight: 800;
+                font-size: 1em;
+                font-family: $heading-font;
+
+                &__link {
+                    text-decoration: none;
+                    color: $blue-color;
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 100;
+                }
+            }
+
+            &__container {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                display: grid;
+                grid-template-columns: 104px 104px 104px;
+                grid-template-rows: 160px 160px;
+                justify-content: space-around;
+
+                &__img_book4 {
+                    margin-top: 18px;
+                }
+
+                &__img_book5 {
+                    margin-top: -7px;
+                }
+
+                &__img_book6 {
+                    margin-top: 6px;
+                }
+            }
+
+            &__link_container {
+                grid-row: 3/4;
+                text-align: center;
+
+                &__text {
+                    font-family: $heading-font;
+                    font-weight: 600;
+                    font-size: 0.75em;
+                    color: $blush-color;
+                    text-decoration: underline;
+                }
+
+                @media screen and (max-width:414px) {
+                    &__img {
+                        position: absolute;
+                        left: 278px;
+                        margin-top: 3px;
+                    }
+                }
+
+                @media screen and (max-width:411px) {
+                    &__img {
+                        position: absolute;
+                        left: 277px;
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    @media screen and (min-width:415px) {
+        .wishlist {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 40px 350px 20px;
+
+            &__text {
+                grid-row: 1/2;
+                grid-column: 1/2;
+                color: $dark-gray-color;
+                font-weight: 800;
+                font-size: 1em;
+                font-family: $heading-font;
+                margin-left: 20px;
+
+                &__link {
+                    text-decoration: none;
+                    color: $blue-color;
+                    font-family: $heading-font;
+                    font-size: 0.75em;
+                    font-weight: 100;
+                }
+            }
+
+            &__container {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                display: grid;
+                grid-template-columns: 104px 104px 104px;
+                justify-content: space-around;
+            }
+
+            &__link_container {
+                grid-row: 3/4;
+                text-align: center;
+                margin-top: 2%;
+
+                &__text {
+                    font-family: $heading-font;
+                    font-weight: 600;
+                    font-size: 0.75em;
+                    color: $blush-color;
+                    text-decoration: none;
+                }
+
+                &__img {
+                    display: none;
+                }
+            }
+        }
+    }
+}

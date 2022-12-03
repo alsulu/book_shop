@@ -1,0 +1,2 @@
+<main-nav type="book"></main-nav>
+<list-component title="search" search="${props.search}" book="" list-type="book"></list-component>
