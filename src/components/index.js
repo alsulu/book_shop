@@ -4,3 +4,4 @@ import './user-avatar';
 import './book-detail';
 import './book-component';
 import './list-component';
+import './cart-component';

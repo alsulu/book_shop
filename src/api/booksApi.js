@@ -1,5 +1,5 @@
-export const getNewBooks = () => {
-    return fetch('https://api.itbook.store/1.0/new')
+export const getNewBooks = () => 
+    fetch('https://api.itbook.store/1.0/new')
         .then((response) => {
             console.log(response);
             if (response.ok)
@@ -11,10 +11,9 @@ export const getNewBooks = () => {
         /*.catch((error) => {
             console.log(error);
         })*/
-}
 
-export const getBookByISBN = (id) => {
-    return fetch('https://api.itbook.store/1.0/books/' + id)
+export const getBookByISBN = (id) => 
+    fetch('https://api.itbook.store/1.0/books/' + id)
         .then((response) => {
             console.log(response);
             if (response.ok)
@@ -26,10 +25,9 @@ export const getBookByISBN = (id) => {
         /*.catch((error) => {
             console.log(error);
         })*/
-}
 
-export const getBooksBySearch = (search, page) => {
-    return fetch(`https://api.itbook.store/1.0/search/${search}/${page}`)
+export const getBooksBySearch = (search, page) => 
+    fetch(`https://api.itbook.store/1.0/search/${search}/${page}`)
         .then((response) => {
             console.log(response);
             if (response.ok)
@@ -41,7 +39,6 @@ export const getBooksBySearch = (search, page) => {
         /*.catch((error) => {
             console.log(error);
         })*/
-}
 
 export default {
     getNewBooks,

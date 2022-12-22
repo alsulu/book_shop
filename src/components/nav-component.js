@@ -80,9 +80,9 @@ class NavComponent extends HTMLElement {
         const input = shadow.querySelector('input');
         const search = this.getAttribute('search');
         input.value = search;
-        if (this.searchType === appConstants.search.type.book)
+        if (this.searchType === "book")
             input.setAttribute('placeholder', 'Search book...')
-        else if (this.searchType === appConstants.search.type.user)
+        else if (this.searchType === "user")
             input.setAttribute('placeholder', 'Search user...')
     }
 

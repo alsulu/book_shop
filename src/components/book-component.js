@@ -1,7 +1,9 @@
+import { BooksApi } from '../api';
 import appConstants from '../common/constants';
 //import { render } from '../router';
 import { goTo, routes } from '../router';
 import { getBook, setBook } from '../service/books';
+import { getCartByUser, addToCart } from '../api/cartApi';
 
 class BookComponent extends HTMLElement {
     constructor() {
@@ -15,6 +17,7 @@ class BookComponent extends HTMLElement {
             <h4 class="book-container__title"></h4>
             <p class="book-container__subtitle"></p>
             <p class="book-container__price"></p>
+            <button class="book-container__button">Add to Cart</button>
         `
 
         /*const style = document.createElement('style');
@@ -31,6 +34,8 @@ class BookComponent extends HTMLElement {
         const id = this.getAttribute('id');
         //const search = this.getAttribute('search');
         const book = getBook(id);
+        let count = 0;
+
         
         //if (book.isbn13 === id) {
             const wrapper = shadow.querySelector('.book-container');
@@ -44,6 +49,24 @@ class BookComponent extends HTMLElement {
             subtitle.textContent = book.subtitle;
             const price = shadow.querySelector('.book-container__price');
             price.textContent = book.price;
+            const button = shadow.querySelector('.book-container__button');
+            
+            getCartByUser(1)
+            .then(data => {
+                console.log(data); 
+                data.forEach(el=> {if (el.bookId === id) {
+                    button.innerText = "Added"
+                    button.setAttribute("disabled", true)
+                }})
+            })
+            
+            button.addEventListener('click', e => {
+                count++
+                e.stopPropagation()
+                addToCart({"bookId": id, "count": 1, "userId": 1})
+                /*button.innerText = "Added"
+                button.setAttribute("disabled", true)*/
+            })
             
             wrapper.addEventListener('click', (e) => {
                 e.stopPropagation()

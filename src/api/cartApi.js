@@ -1,11 +1,10 @@
 import baseApi from "./baseApi";
 
-export const getCartByUser = (userId) => {
-    return baseApi.get(`/cart?userId=${userId}&_expand=user`)
-}
+export const getCartByUser = (userId) => 
+    baseApi.get(`/cart?userId=${userId}`)
 
-export const addToCart = (userId) => {
-    return baseApi.post(`/cart?userId=${userId}/book`)
+export const addToCart = (params={}) => {
+    return baseApi.post(`/cart`, params)
 }
 
 export default {

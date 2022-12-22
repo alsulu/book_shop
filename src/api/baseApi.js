@@ -1,5 +1,5 @@
-const getData = (url) => {
-    return fetch('http://localhost:1111' + url)
+const getData = (url) => 
+    fetch('http://localhost:1111' + url)
         .then((response) => {
             console.log(response);
             if (response.ok)
@@ -11,10 +11,9 @@ const getData = (url) => {
         .catch((error) => {
             console.log(error);
         })
-}
 
-const postData = (url, params={}) => {
-    return fetch('http://localhost:1111' + url, {
+const postData = (url, params={}) => 
+    fetch('http://localhost:1111' + url, {
         method: 'POST',
         body: JSON.stringify(params),
         headers: {
@@ -32,10 +31,10 @@ const postData = (url, params={}) => {
         .catch((error) => {
             console.log(error);
         })
-}
 
-const deleteData = (url, params={}) => {
-    return fetch('http://localhost:1111' + url, {
+
+const deleteData = (url, params={}) => 
+    fetch('http://localhost:1111' + url, {
         method: 'DELETE',
         body: JSON.stringify(params),
         headers: {
@@ -53,7 +52,6 @@ const deleteData = (url, params={}) => {
         .catch((error) => {
             console.log(error);
         })
-}
 
 export default {
     get: getData,

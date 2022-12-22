@@ -1,37 +1,54 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "email": "test@test.com",
-            "password": "1234",
-            "name": "Alice"
-        }, {
-            "id": 2,
-            "email": "test2@test.com",
-            "password": "12345",
-            "name": "Alexandra"
-        }
-    ], 
-    "cart": [
-        {
-            "userId": 1,
-            "count": 0,
-            "books": []
-        }, {
-            "userId": 2,
-            "count": 0,
-            "books": []
-        }
-    ],
-    "wishlist": [
-        {
-            "userId": 1,
-            "count": 0,
-            "books": []
-        }, {
-            "userId": 2,
-            "count": 0,
-            "books": []
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "1234",
+      "name": "Alice"
+    },
+    {
+      "id": 2,
+      "email": "test2@test.com",
+      "password": "12345",
+      "name": "Alexandra"
+    }
+  ],
+  "cart": [
+    {
+      "bookId": "9781098112042",
+      "count": 1,
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "bookId": "9781098113087",
+      "count": 1,
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "bookId": "9781098118808",
+      "count": 1,
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "bookId": "9781098112042",
+      "count": 1,
+      "userId": 2,
+      "id": 5
+    }
+  ],
+  "wishlist": [
+    {
+      "userId": 1,
+      "count": 0,
+      "books": []
+    },
+    {
+      "userId": 2,
+      "count": 0,
+      "books": []
+    }
+  ]
 }
