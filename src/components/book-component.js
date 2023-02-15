@@ -32,6 +32,7 @@ class BookComponent extends HTMLElement {
     connectedCallback() {
         const shadow = this.shadowRoot;
         const id = this.getAttribute('id');
+        const isAdded = this.getAttribute('isAdded') || false;
         //const search = this.getAttribute('search');
         const book = getBook(id);
         let count = 0;
@@ -50,22 +51,33 @@ class BookComponent extends HTMLElement {
             const price = shadow.querySelector('.book-container__price');
             price.textContent = book.price;
             const button = shadow.querySelector('.book-container__button');
-            
-            getCartByUser(1)
-            .then(data => {
-                console.log(data); 
-                data.forEach(el=> {if (el.bookId === id) {
-                    button.innerText = "Added"
-                    button.setAttribute("disabled", true)
-                }})
-            })
+            if (isAdded) {
+                button.innerText = "Added"
+                button.setAttribute("disabled", true)
+            }
+            /*getCartByUser(1)
+                .then(data => {
+                    console.log(data); 
+                    data.forEach(el=> {if (el.bookId === id) {
+                        button.innerText = "Added"
+                        button.setAttribute("disabled", true)
+                    }})
+                })
+                .catch (err => console.log(err.message))*/
             
             button.addEventListener('click', e => {
                 count++
                 e.stopPropagation()
-                addToCart({"bookId": id, "count": 1, "userId": 1})
-                /*button.innerText = "Added"
-                button.setAttribute("disabled", true)*/
+                if (isAdded) {
+                    /*button.innerText = "Added"
+                    button.setAttribute("disabled", true)*/
+                    console.log("added")
+                }
+                else {
+                    addToCart({"bookId": id, "count": 1, "userId": 1})
+                    button.innerText = "Added"
+                    button.setAttribute("disabled", true)
+                }
             })
             
             wrapper.addEventListener('click', (e) => {

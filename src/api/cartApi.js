@@ -7,7 +7,12 @@ export const addToCart = (params={}) => {
     return baseApi.post(`/cart`, params)
 }
 
+export const updateCart = (id, params={}) => {
+    return baseApi.put(`/cart/${id}`, params)
+}
+
 export default {
     getCartByUser,
-    addToCart
+    addToCart,
+    updateCart
 }

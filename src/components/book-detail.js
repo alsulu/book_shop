@@ -3,6 +3,8 @@ import appConstants from '../common/constants';
 import { goTo } from '../router';
 import { getBook, setBook } from '../service/books';
 import {getBookByISBN} from '../api/booksApi';
+import { getCartByUser, addToCart, updateCart } from '../api/cartApi';
+
 
 class BookDetail extends HTMLElement {
     constructor() {
@@ -10,6 +12,7 @@ class BookDetail extends HTMLElement {
         const shadow = this.attachShadow({mode: 'open'});
         const wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'book-detail');
+        this.isClicked = false;
 
         wrapper.innerHTML = `
             <div class="book-detail__container">
@@ -19,6 +22,7 @@ class BookDetail extends HTMLElement {
                 <p class="book-detail__container__price"></p>
                 <p class="book-detail__container__description"></p>
                 <button class="book-detail__container__cart-btn">Add to Cart</button>
+                <button class="book-detail__container__updCart-btn">Update Cart</button>
                 <button class="book-detail__container__wishlist-btn">Wishlist</button>
                 <p class="book-detail__container__publisher"></p>
                 <p class="book-detail__container__isbn13"></p>
@@ -51,7 +55,32 @@ class BookDetail extends HTMLElement {
                 })
                 .catch(error => console.log(error))
         //}
+
     }
+
+    /*updateCart() {
+        let count;
+        let cartId;
+        getCartByUser(1)
+            .then(data => {
+                console.log(data); 
+                data.forEach(el=> {if (el.bookId === id) {
+                    cart.innerText = "Added"
+                    cart.setAttribute("disabled", true)
+                    count = el.count || 1
+                    cartId = el.id || data.length
+                }})
+            })
+            .catch (err => console.log(err.message))
+    }
+
+    static get observedAttributes() {
+        return ['isClicked']
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        this.updateCart()
+    }*/
 
     updateBook(book) {
         const shadow = this.shadowRoot;
@@ -80,6 +109,40 @@ class BookDetail extends HTMLElement {
         cart.setAttribute('data-art', book.isbn13);
         const wishlist = shadow.querySelector('.book-detail__container__wishlist-btn');
         wishlist.setAttribute('data-art', book.isbn13);
+
+        const updCart = shadow.querySelector('.book-detail__container__updCart-btn');
+        updCart.setAttribute('data-art', book.isbn13);
+
+        let count;
+        let cartId;
+        getCartByUser(1)
+            .then(data => {
+                console.log(data); 
+                data.forEach(el=> {if (el.bookId === id) {
+                    cart.innerText = "Added"
+                    cart.setAttribute("disabled", true)
+                    count = el.count || 1
+                    cartId = el.id || data.length+1
+                }})
+            })
+            .catch (err => console.log(err.message))
+
+        cart.addEventListener('click', e => {
+            e.stopPropagation()
+            addToCart({"bookId": id, "count": 1, "userId": 1})
+            cart.innerText = "Added"
+            cart.setAttribute("disabled", true)
+            /*this.isClicked = true
+            this.updateCart()*/
+        })
+        updCart.addEventListener('click', e => {
+            e.stopPropagation()
+            count++
+            console.log(count)
+            //addToCart({"id": cartId, "count": count})
+            updateCart(cartId, {"bookId": id, "count": count, "userId": 1})
+        })
+
         
         /*const similar = shadow.querySelector('.book-detail__similar');
         const similarList = document.createElement('list-component');

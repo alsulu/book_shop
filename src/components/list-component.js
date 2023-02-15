@@ -5,6 +5,7 @@ import { getBook, setBook } from '../service/books';
 import { getUser, setUser } from '../service/users';
 import { getBooksBySearch, getNewBooks } from '../api/booksApi';
 import { getUsersSearch } from '../api/usersApi';
+import { getCartByUser, addToCart } from '../api/cartApi';
 
 class ListComponent extends HTMLElement {
     constructor() {
@@ -144,9 +145,20 @@ class ListComponent extends HTMLElement {
                     this.lastPage
                 })
         }*/
-        console.log('aicall', apiCall);
+        console.log('apicall', apiCall);
 
-        apiCall
+        let newarr = [];
+
+            
+        getCartByUser(1)
+        .then(data => {
+            console.log(data);
+            data.forEach(el=> newarr.push(el.bookId)
+                    /* {
+                        button.innerText = "Added"
+                        button.setAttribute("disabled", true)
+                    }}*/)
+                    apiCall
             .then((books) => {
                 const fragment = document.createDocumentFragment();
                 this.lastPage = books.total%10===0 ? this.page = books.total/10 : this.page = books.total/10+1;
@@ -158,7 +170,9 @@ class ListComponent extends HTMLElement {
                     if (book.isbn13 !== id) {
                         setBook(book);
                         const bookElement = document.createElement('book-component');
-                        bookElement.setAttribute('id', book.isbn13)
+                        bookElement.setAttribute('id', book.isbn13);
+                        if (newarr.indexOf(book.isbn13) >= 0) 
+                            bookElement.setAttribute('isAdded', true)
                         if (this.search) {
                             bookElement.setAttribute('search', this.search)
                         }
@@ -173,6 +187,9 @@ class ListComponent extends HTMLElement {
             .catch((error) => {
                 console.log(error);
             })
+        })
+        .catch (err => console.log(err.message))
+
     }
 
     getUsersPage() {
