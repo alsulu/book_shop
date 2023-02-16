@@ -28,6 +28,7 @@ class BookComponent extends HTMLElement {
         shadow.appendChild(style);*/
         shadow.appendChild(wrapper);
     }
+    
 
     connectedCallback() {
         const shadow = this.shadowRoot;

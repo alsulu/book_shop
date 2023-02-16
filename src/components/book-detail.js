@@ -1,4 +1,5 @@
 import appConstants from '../common/constants';
+import { cartData } from '../common/common';
 //import { render } from '../router';
 import { goTo } from '../router';
 import { getBook, setBook } from '../service/books';
@@ -113,35 +114,38 @@ class BookDetail extends HTMLElement {
         const updCart = shadow.querySelector('.book-detail__container__updCart-btn');
         updCart.setAttribute('data-art', book.isbn13);
 
-        let count;
+        let count = 1;
         let cartId;
-        getCartByUser(1)
-            .then(data => {
-                console.log(data); 
-                data.forEach(el=> {if (el.bookId === id) {
-                    cart.innerText = "Added"
-                    cart.setAttribute("disabled", true)
-                    count = el.count || 1
-                    cartId = el.id || data.length+1
-                }})
-            })
-            .catch (err => console.log(err.message))
+        console.log('cartData', cartData)
 
+        cartData.forEach(el => {
+            if (el.bookId === id) {
+                cart.innerText = "Added"
+                cart.setAttribute("disabled", true)
+                count = el.count
+                cartId = el.id || cartData.length+1
+            }
+        })
+
+        const detail = {"bookId": id, "count": count, "userId": 1}
+        console.log('detail', detail)
         cart.addEventListener('click', e => {
             e.stopPropagation()
-            addToCart({"bookId": id, "count": 1, "userId": 1})
+            addToCart(detail)
             cart.innerText = "Added"
             cart.setAttribute("disabled", true)
-            /*this.isClicked = true
-            this.updateCart()*/
+            this.isClicked = true
+            //this.updateBook()
+            cartData.push(detail)
         })
-        updCart.addEventListener('click', e => {
+        /*updCart.addEventListener('click', e => {
             e.stopPropagation()
             count++
             console.log(count)
             //addToCart({"id": cartId, "count": count})
-            updateCart(cartId, {"bookId": id, "count": count, "userId": 1})
-        })
+            updateCart(cartId, detail)
+            cartData.forEach(el => el.bookId === id && el.count++)
+        })*/
 
         
         /*const similar = shadow.querySelector('.book-detail__similar');

@@ -1,6 +1,8 @@
 import appConstants from '../common/constants';
+import { newarr, cartCount, cartData, isLoaded } from '../common/common';
 //import { render } from '../router';
 import { goTo, routes } from '../router';
+import { getCartByUser, addToCart, updateCart } from '../api/cartApi';
 
 class NavComponent extends HTMLElement {
     constructor() {
@@ -80,16 +82,16 @@ class NavComponent extends HTMLElement {
         const input = shadow.querySelector('input');
         const search = this.getAttribute('search');
         input.value = search;
-        if (this.searchType === "book")
+        /*if (this.searchType === "book")
             input.setAttribute('placeholder', 'Search book...')
         else if (this.searchType === "user")
-            input.setAttribute('placeholder', 'Search user...')
+            input.setAttribute('placeholder', 'Search user...')*/
     }
 
-    connectedCallback() {
+    async connectedCallback () {
         const shadow = this.shadowRoot;
         const searchText = this.getAttribute('search');
-        this.searchType = this.getAttribute('type') ? this.getAttribute('type') : appConstants.search.types.book;
+        //this.searchType = this.getAttribute('type') ? this.getAttribute('type') : appConstants.search.types.book;
 
         if (searchText) {
             const input = shadow.querySelector('input');
@@ -101,8 +103,22 @@ class NavComponent extends HTMLElement {
 
         if (link) {
             const linkElement = shadow.querySelector(`.${link.class}`);
-            linkElement.setAttribute('selected', true)
+            //linkElement.setAttribute('selected', true)
         }
+
+
+        /*getCartByUser(1)
+            .then(data => {
+                cartCount = 0;
+                console.log(data);
+                data.forEach(el => {
+                    newarr.push(el.bookId)
+                    cartCount++
+                })
+                cartData = {...data}
+                isLoaded = true;
+            })
+            .catch (err => console.log(err.message))*/
     }
 
     static get observedAttributes() {
@@ -115,7 +131,7 @@ class NavComponent extends HTMLElement {
         }
 
         if (name === 'type') {
-            this.searchType = newValue;
+            //this.searchType = newValue;
             this.updateSearch();
         }
     }

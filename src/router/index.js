@@ -69,7 +69,7 @@ export const render = (path) => {
         result = pathRoute.page(pathRoute.params)
     }
 
-    document.querySelector('#app').innerHTML = result
+    document.querySelector('#content').innerHTML = result
 }
 
 export const getRouterParams = () => {

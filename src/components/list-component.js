@@ -1,4 +1,5 @@
 import appConstants from '../common/constants';
+import { newarr, isLoaded } from '../common/common';
 //import { render } from '../router';
 import { goTo } from '../router';
 import { getBook, setBook } from '../service/books';
@@ -147,18 +148,9 @@ class ListComponent extends HTMLElement {
         }*/
         console.log('apicall', apiCall);
 
-        let newarr = [];
+        //let newarr = [];
 
-            
-        getCartByUser(1)
-        .then(data => {
-            console.log(data);
-            data.forEach(el=> newarr.push(el.bookId)
-                    /* {
-                        button.innerText = "Added"
-                        button.setAttribute("disabled", true)
-                    }}*/)
-                    apiCall
+        apiCall
             .then((books) => {
                 const fragment = document.createDocumentFragment();
                 this.lastPage = books.total%10===0 ? this.page = books.total/10 : this.page = books.total/10+1;
@@ -171,8 +163,9 @@ class ListComponent extends HTMLElement {
                         setBook(book);
                         const bookElement = document.createElement('book-component');
                         bookElement.setAttribute('id', book.isbn13);
-                        if (newarr.indexOf(book.isbn13) >= 0) 
-                            bookElement.setAttribute('isAdded', true)
+                        if (isLoaded)
+                            if (newarr.indexOf(book.isbn13) >= 0) 
+                                bookElement.setAttribute('isAdded', true)
                         if (this.search) {
                             bookElement.setAttribute('search', this.search)
                         }
@@ -187,8 +180,21 @@ class ListComponent extends HTMLElement {
             .catch((error) => {
                 console.log(error);
             })
-        })
-        .catch (err => console.log(err.message))
+            
+            /*if (isLoaded)
+                if (newarr.indexOf(book.isbn13) >= 0) 
+                        bookElement.setAttribute('isAdded', true)
+
+        /*getCartByUser(1)
+            .then(data => {
+                console.log(data);
+                data.forEach(el=> newarr.push(el.bookId)
+                        /* {
+                            button.innerText = "Added"
+                            button.setAttribute("disabled", true)
+                        }}*//*)
+            })
+            .catch (err => console.log(err.message))*/
 
     }
 
