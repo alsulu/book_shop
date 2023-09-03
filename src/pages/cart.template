@@ -1,1 +1,1 @@
-<list-component title="Cart" list-type="book"></list-component>
+<cart-component title="Cart"></cart-component>

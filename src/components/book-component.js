@@ -3,7 +3,8 @@ import appConstants from '../common/constants';
 //import { render } from '../router';
 import { goTo, routes } from '../router';
 import { getBook, setBook } from '../service/books';
-import { getCartByUser, addToCart } from '../api/cartApi';
+import { newarr, isLoaded, updateCartByUser } from '../common/common';
+import { getCartByUser, addToCart, updateCart, deleteFromCart } from '../api/cartApi';
 
 class BookComponent extends HTMLElement {
     constructor() {
@@ -17,7 +18,7 @@ class BookComponent extends HTMLElement {
             <h4 class="book-container__title"></h4>
             <p class="book-container__subtitle"></p>
             <p class="book-container__price"></p>
-            <button class="book-container__button">Add to Cart</button>
+            <div class="book-container__button-container"></div>
         `
 
         /*const style = document.createElement('style');
@@ -29,14 +30,20 @@ class BookComponent extends HTMLElement {
         shadow.appendChild(wrapper);
     }
     
+    /*connectedCallback() {
+        if (!this.rendered) {
+            this.render();
+            this.rendered = true;
+        }
+    }*/
 
     connectedCallback() {
         const shadow = this.shadowRoot;
         const id = this.getAttribute('id');
-        const isAdded = this.getAttribute('isAdded') || false;
+        let isAdded = this.getAttribute('isAdded') || false;
         //const search = this.getAttribute('search');
         const book = getBook(id);
-        let count = 0;
+        let count = this.getAttribute('count') || "0";
 
         
         //if (book.isbn13 === id) {
@@ -51,35 +58,59 @@ class BookComponent extends HTMLElement {
             subtitle.textContent = book.subtitle;
             const price = shadow.querySelector('.book-container__price');
             price.textContent = book.price;
-            const button = shadow.querySelector('.book-container__button');
-            if (isAdded) {
-                button.innerText = "Added"
-                button.setAttribute("disabled", true)
-            }
-            /*getCartByUser(1)
-                .then(data => {
-                    console.log(data); 
-                    data.forEach(el=> {if (el.bookId === id) {
-                        button.innerText = "Added"
-                        button.setAttribute("disabled", true)
-                    }})
-                })
-                .catch (err => console.log(err.message))*/
             
-            button.addEventListener('click', e => {
-                count++
-                e.stopPropagation()
-                if (isAdded) {
-                    /*button.innerText = "Added"
-                    button.setAttribute("disabled", true)*/
-                    console.log("added")
-                }
-                else {
-                    addToCart({"bookId": id, "count": 1, "userId": 1})
-                    button.innerText = "Added"
-                    button.setAttribute("disabled", true)
-                }
-            })
+            
+            const buttonDiv = shadow.querySelector('.book-container__button-container');
+            
+            if (isAdded === "true") {
+
+                const index = newarr.map(e => e.bookId).indexOf(book.isbn13);
+                const numb = newarr[index].id;
+
+                buttonDiv.innerHTML = `<button class="book-container__button-container__button-minus">-</button>
+                    <span>${count}</span>
+                    <button class="book-container__button-container__button-plus">+</button>`
+
+
+                const buttonMinus = buttonDiv.querySelector('.book-container__button-container__button-minus');
+                buttonMinus.addEventListener('click', e => {
+                    e.stopPropagation();
+                    count--;
+                    if (count > 0) {
+                        const detail = {"bookId": id, "count": count}
+                        updateCart(numb, detail);
+                        this.setAttribute('count', count)
+                    }
+                    else {
+                        const detail = {"bookId": id, "count": count+1}
+                        //deleteFromCart(numb, detail);
+                        this.deleteFrom(numb, detail, count)
+                    }
+                })
+
+                const buttonPlus = buttonDiv.querySelector('.book-container__button-container__button-plus');
+                buttonPlus.addEventListener('click', e => {
+                    e.stopPropagation();
+                    count++;
+                    const detail = {"bookId": id, "count": count};
+                    updateCart(numb, detail);
+                    this.setAttribute('count', count)
+                })
+            }
+            else {
+                buttonDiv.innerHTML = '<button class="book-container__button-container__button"></button>';
+                const button = buttonDiv.querySelector('.book-container__button-container__button');
+                button.innerText = "Add To Cart";
+
+                button.addEventListener('click', e => {
+                    e.stopPropagation();
+                    count = 1;
+                    this.addTo(id, count)
+                    //addToCart({"bookId": id, "count": count});
+                    /*this.setAttribute('isAdded', true)
+                    this.setAttribute('count', count)*/
+                })
+            }
             
             wrapper.addEventListener('click', (e) => {
                 e.stopPropagation()
@@ -87,6 +118,27 @@ class BookComponent extends HTMLElement {
                 goTo(url)
             })
         //}
+    }
+    async addTo(id, count) {
+        await addToCart({"bookId": id, "count": count});
+        await updateCartByUser()
+        this.setAttribute('isAdded', true)
+        this.setAttribute('count', count)
+    }
+
+    async deleteFrom(numb, detail, count) {
+        await deleteFromCart(numb, detail);
+        await updateCartByUser()
+        this.setAttribute('isAdded', false)
+        this.setAttribute('count', 0)
+    }
+
+    static get observedAttributes() {
+        return ['isAdded', 'count']
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        this.connectedCallback()
     }
 
     /*updateBook(book) {

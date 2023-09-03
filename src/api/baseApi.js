@@ -1,7 +1,7 @@
 const getData = (url) => 
     fetch('http://localhost:1111' + url)
         .then((response) => {
-            console.log(response);
+            //console.log(response);
             if (response.ok)
                 return response.json();
             else {
@@ -21,7 +21,7 @@ const postData = (url, params={}) =>
         }
     })
         .then((response) => {
-            console.log(response);
+            //console.log(response);
             if (response.ok)
                 return response.json();
             else {
@@ -41,7 +41,7 @@ const putData = (url, params={}) =>
         }
     })
         .then((response) => {
-            console.log(response);
+            //console.log(response);
             if (response.ok)
                 return response.json();
             else {
@@ -62,7 +62,7 @@ const deleteData = (url, params={}) =>
         }
     })
         .then((response) => {
-            console.log(response);
+            //console.log(response);
             if (response.ok)
                 return response.json();
             else {

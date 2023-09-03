@@ -1,21 +1,25 @@
 import { getCartByUser, addToCart, updateCart } from '../api/cartApi';
 
-let newarr = [];
+let newarr;
 let cartCount;
 let cartData = [];
-let isLoaded = false;
+let isLoaded;
 
-getCartByUser(1)
+const updateCartByUser = async() => {
+    newarr = [];
+    isLoaded = false;
+    await getCartByUser()
             .then(data => {
                 cartCount = 0;
-                console.log('data', data);
                 data.forEach(el => {
-                    newarr.push(el.bookId)
+                    newarr.push({"bookId": el.bookId, "id": el.id, "count": el.count})
                     cartCount++
                 })
                 cartData = [...data]
-                isLoaded = true;
             })
             .catch (err => console.log(err.message))
+    isLoaded = true;
+    console.log('корзина обновлена')
+    }
 
-export {newarr, cartCount, cartData, isLoaded};
+export {newarr, cartCount, cartData, isLoaded, updateCartByUser};

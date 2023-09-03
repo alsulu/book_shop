@@ -1,5 +1,5 @@
 import appConstants from '../common/constants';
-import { newarr, isLoaded } from '../common/common';
+import { newarr, isLoaded, updateCartByUser } from '../common/common';
 //import { render } from '../router';
 import { goTo } from '../router';
 import { getBook, setBook } from '../service/books';
@@ -123,6 +123,8 @@ class ListComponent extends HTMLElement {
 
         if (typeList === 'book')
             this.getBooksPage();
+        /*if (typeList === 'cart')
+            this.getCartPage();*/
         if (typeList === 'user')
             this.getUsersPage();
     }
@@ -146,29 +148,36 @@ class ListComponent extends HTMLElement {
                     this.lastPage
                 })
         }*/
-        console.log('apicall', apiCall);
+        //console.log('apicall', apiCall);
 
         //let newarr = [];
 
         apiCall
-            .then((books) => {
+            .then(async (books) => {
                 const fragment = document.createDocumentFragment();
                 this.lastPage = books.total%10===0 ? this.page = books.total/10 : this.page = books.total/10+1;
                 const count = books.total;
                 //pagination.setAttribute('last', this.lastPage);
                 wrapper.innerHTML = '';
 
+                await updateCartByUser()
+
                 books.books.forEach(book => {
                     if (book.isbn13 !== id) {
                         setBook(book);
                         const bookElement = document.createElement('book-component');
                         bookElement.setAttribute('id', book.isbn13);
-                        if (isLoaded)
-                            if (newarr.indexOf(book.isbn13) >= 0) 
-                                bookElement.setAttribute('isAdded', true)
-                        if (this.search) {
-                            bookElement.setAttribute('search', this.search)
+                        if (isLoaded) {
+                            const index = newarr.map(e => e.bookId).indexOf(book.isbn13);
+
+                            if (index >= 0) {
+                                const count = newarr[index].count;
+                                bookElement.setAttribute('isAdded', true);
+                                bookElement.setAttribute('count', count);
+                            }
                         }
+                        if (this.search) 
+                            bookElement.setAttribute('search', this.search)
                         fragment.appendChild(bookElement);
                     }
                 });
@@ -197,6 +206,13 @@ class ListComponent extends HTMLElement {
             .catch (err => console.log(err.message))*/
 
     }
+
+    /*getCartPage() {
+        const shadow = this.shadowRoot;
+        const wrapper = shadow.querySelector('.list-container');
+        const search = this.getAttribute('search');
+        const id = this.getAttribute('id');
+    }*/
 
     getUsersPage() {
         const shadow = this.shadowRoot;

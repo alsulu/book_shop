@@ -1,6 +1,6 @@
 import appConstants from '../common/constants';
 import { cartData } from '../common/common';
-//import { render } from '../router';
+//import { render } from '../router'; 
 import { goTo } from '../router';
 import { getBook, setBook } from '../service/books';
 import {getBookByISBN} from '../api/booksApi';
@@ -138,6 +138,7 @@ class BookDetail extends HTMLElement {
             //this.updateBook()
             cartData.push(detail)
         })
+
         /*updCart.addEventListener('click', e => {
             e.stopPropagation()
             count++
@@ -145,7 +146,7 @@ class BookDetail extends HTMLElement {
             //addToCart({"id": cartId, "count": count})
             updateCart(cartId, detail)
             cartData.forEach(el => el.bookId === id && el.count++)
-        })*/
+        })
 
         
         /*const similar = shadow.querySelector('.book-detail__similar');

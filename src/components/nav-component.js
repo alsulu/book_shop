@@ -1,5 +1,4 @@
 import appConstants from '../common/constants';
-import { newarr, cartCount, cartData, isLoaded } from '../common/common';
 //import { render } from '../router';
 import { goTo, routes } from '../router';
 import { getCartByUser, addToCart, updateCart } from '../api/cartApi';
