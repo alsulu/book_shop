@@ -15,12 +15,14 @@ const appConstants = {
         types: {
             book: 'book',
             user: 'user',
+            cart: 'cart'
         }
     },
     lists: {
         types: {
             book: 'book',
             user: 'user',
+            cart: 'cart'
         }
     }
 }

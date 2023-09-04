@@ -10,9 +10,9 @@ class CartComponent extends HTMLElement {
         const wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'cart-container');
 
-        wrapper.innerHTML = `
-            
-        `
+        const title = document.createElement('h2');
+        title.innerText = "Cart";
+        shadow.appendChild(title);
 
         /*const style = document.createElement('style');
 
@@ -26,27 +26,9 @@ class CartComponent extends HTMLElement {
     connectedCallback() {
         const shadow = this.shadowRoot;
         const id = this.getAttribute('id');
-        //const search = this.getAttribute('search');
         const book = getBook(id);
         
-        //if (book.isbn13 === id) {
-            const wrapper = shadow.querySelector('.book-container');
-            //console.log(book);
-
-            const cover = shadow.querySelector('.book-container__cover');
-            cover.setAttribute('src', book.image);
-            const title = shadow.querySelector('.book-container__title');
-            title.textContent = book.title;
-            const subtitle = shadow.querySelector('.book-container__subtitle');
-            subtitle.textContent = book.subtitle;
-            const price = shadow.querySelector('.book-container__price');
-            price.textContent = book.price;
-            
-            wrapper.addEventListener('click', (e) => {
-                e.stopPropagation()
-                const url = routes.Book.reverse({book: id})
-                goTo(url)
-            })
+        const bookFromCart = document.createElement('book-componponent')
         //}
     }
 

@@ -22,9 +22,9 @@ export const getBookByISBN = (id) =>
                 throw new Error;
             }
         })
-        /*.catch((error) => {
+        .catch((error) => {
             console.log(error);
-        })*/
+        })
 
 export const getBooksBySearch = (search, page) => 
     fetch(`https://api.itbook.store/1.0/search/${search}/${page}`)

@@ -13,9 +13,9 @@ class NavComponent extends HTMLElement {
         wrapper.setAttribute('class', 'main-menu');
         this.links = [
             {href: appConstants.routes.index, name: 'home', class: 'home-link'},
-            {href: appConstants.routes.book, name: 'Book', class: 'book-link'},
             {href: appConstants.routes.wishlist, name: 'wishlist', class: 'wishlist-link'},
             {href: appConstants.routes.profile, name: 'profile', class: 'profile-link'},
+            {href: appConstants.routes.cart, name: 'cart', class: 'cart-link'}
         ]
 
         const style = document.createElement('style');

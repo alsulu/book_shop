@@ -1,10 +1,10 @@
 import appConstants from '../common/constants';
-import { newarr, isLoaded, updateCartByUser } from '../common/common';
+import { newarr, isLoaded, cartCount, updateCartByUser } from '../common/common';
 //import { render } from '../router';
 import { goTo } from '../router';
 import { getBook, setBook } from '../service/books';
 import { getUser, setUser } from '../service/users';
-import { getBooksBySearch, getNewBooks } from '../api/booksApi';
+import { getBooksBySearch, getNewBooks, getBookByISBN } from '../api/booksApi';
 import { getUsersSearch } from '../api/usersApi';
 import { getCartByUser, addToCart } from '../api/cartApi';
 
@@ -123,8 +123,8 @@ class ListComponent extends HTMLElement {
 
         if (typeList === 'book')
             this.getBooksPage();
-        /*if (typeList === 'cart')
-            this.getCartPage();*/
+        if (typeList === 'cart')
+            this.getCartPage();
         if (typeList === 'user')
             this.getUsersPage();
     }
@@ -134,7 +134,7 @@ class ListComponent extends HTMLElement {
         const wrapper = shadow.querySelector('.list-container');
         const search = this.getAttribute('search');
         const id = this.getAttribute('id');
-
+        
         if (search)
             this.search = search;
 
@@ -166,8 +166,9 @@ class ListComponent extends HTMLElement {
                     if (book.isbn13 !== id) {
                         setBook(book);
                         const bookElement = document.createElement('book-component');
-                        bookElement.setAttribute('id', book.isbn13);
                         if (isLoaded) {
+
+                            bookElement.setAttribute('id', book.isbn13);
                             const index = newarr.map(e => e.bookId).indexOf(book.isbn13);
 
                             if (index >= 0) {
@@ -190,29 +191,47 @@ class ListComponent extends HTMLElement {
                 console.log(error);
             })
             
-            /*if (isLoaded)
-                if (newarr.indexOf(book.isbn13) >= 0) 
-                        bookElement.setAttribute('isAdded', true)
-
-        /*getCartByUser(1)
-            .then(data => {
-                console.log(data);
-                data.forEach(el=> newarr.push(el.bookId)
-                        /* {
-                            button.innerText = "Added"
-                            button.setAttribute("disabled", true)
-                        }}*//*)
-            })
-            .catch (err => console.log(err.message))*/
-
     }
 
-    /*getCartPage() {
+    async getCartPage() {
         const shadow = this.shadowRoot;
+        const fragment = document.createDocumentFragment();
         const wrapper = shadow.querySelector('.list-container');
-        const search = this.getAttribute('search');
         const id = this.getAttribute('id');
-    }*/
+        wrapper.innerHTML = '';
+        const total = document.createElement('p');
+
+        await updateCartByUser();
+
+        console.log('newarr', newarr)
+        await Promise.all(newarr.map(async bookFromCart => {
+            console.log('bookfromcart', bookFromCart.bookId)
+            await getBookByISBN(bookFromCart.bookId)
+                .then(book => {
+                    if (book.isbn13 !== id) {
+                        setBook(book);
+                        const bookElement = document.createElement('book-component');
+                        if (isLoaded) {
+                            bookElement.setAttribute('id', bookFromCart.bookId);
+                            bookElement.setAttribute('isAdded', true);
+                            bookElement.setAttribute('count', bookFromCart.count);
+                            bookElement.setAttribute('ifCart', true);
+                            total.textContent = `Total: ${cartCount}`
+                        }
+                        fragment.appendChild(bookElement);
+                    }
+        })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }))
+        wrapper.appendChild(fragment);
+        wrapper.appendChild(total)
+        if (!cartCount)
+            wrapper.textContent = "Cart is empty"
+        console.log('wrapper', wrapper)
+
+    }
 
     getUsersPage() {
         const shadow = this.shadowRoot;

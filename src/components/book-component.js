@@ -43,6 +43,9 @@ class BookComponent extends HTMLElement {
         let isAdded = this.getAttribute('isAdded') || false;
         //const search = this.getAttribute('search');
         const book = getBook(id);
+        const ifCart = this.getAttribute('ifCart') || false;
+        
+        console.log('book', book)
         let count = this.getAttribute('count') || "0";
 
         
@@ -57,7 +60,13 @@ class BookComponent extends HTMLElement {
             const subtitle = shadow.querySelector('.book-container__subtitle');
             subtitle.textContent = book.subtitle;
             const price = shadow.querySelector('.book-container__price');
-            price.textContent = book.price;
+
+            if (ifCart) {
+                const pricePerPiece = book.price.slice(1);
+                price.textContent = "$" + (+pricePerPiece * +count).toFixed(2);
+            }
+            else
+                price.textContent = book.price;
             
             
             const buttonDiv = shadow.querySelector('.book-container__button-container');
