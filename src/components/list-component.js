@@ -14,6 +14,7 @@ class ListComponent extends HTMLElement {
         this.search = '';
         this.page = 1;
         this.lastPage = false;
+        //this.getAttribute('upd') || false;
         //this.typeList = appConstants.lists.types.book;
 
         const shadow = this.attachShadow({mode: 'open'});
@@ -35,10 +36,10 @@ class ListComponent extends HTMLElement {
             e.stopPropagation();
             if (this.page > 1) {
                 this.page--;
-                if (this.typeList === appConstants.lists.types.book)
+                if (this.typeList === 'book')
                     this.getBooksPage();
-                if (this.typeList = appConstants.lists.types.user)
-                    this.getUsersPage();
+                /*if (this.typeList = appConstants.lists.types.user)
+                    this.getUsersPage();*/
             }
         })
 
@@ -47,12 +48,15 @@ class ListComponent extends HTMLElement {
         nextBtn.textContent = 'Next';
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (!this.lastPage) {
+            if (this.page !== this.lastPage) {
                 this.page++;
-                if (this.typeList === appConstants.lists.types.book)
-                    this.getBooksPage();
-                if (this.typeList = appConstants.lists.types.user)
-                    this.getUsersPage();
+                //if (this.typeList === 'book') {
+                    //this.setAttribute('upd', true)
+                    this.connectedCallback();
+                //}
+                    //this.getBooksPage();
+                /*if (this.typeList = appConstants.lists.types.user)
+                    this.getUsersPage();*/
             }
         })
 
@@ -85,7 +89,12 @@ class ListComponent extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this.updateList()
+        //if (name === 'search')
+            this.updateList();
+        /*if (name === 'upd') {
+            this.connectedCallback();
+            console.log('upd')
+        }*/
     }
 
     updatePage() {
@@ -94,13 +103,14 @@ class ListComponent extends HTMLElement {
         const nextBtn = shadow.querySelector('.pagination__next-btn');
         const pageNumber = shadow.querySelector('.pagination__number');
         console.log(prevBtn);
+        //this.getAttribute('upd') || false;
         
         if (this.page === 1)
             prevBtn.setAttribute('disabled', true)
         else
             prevBtn.removeAttribute('disabled');
 
-        if (!this.lastPage)
+        if (this.page === this.lastPage)
             nextBtn.setAttribute('disabled', true)
         else
             nextBtn.removeAttribute('disabled');
@@ -125,8 +135,8 @@ class ListComponent extends HTMLElement {
             this.getBooksPage();
         if (typeList === 'cart')
             this.getCartPage();
-        if (typeList === 'user')
-            this.getUsersPage();
+        /*if (typeList === 'user')
+            this.getUsersPage();*/
     }
 
     getBooksPage() {
@@ -134,9 +144,13 @@ class ListComponent extends HTMLElement {
         const wrapper = shadow.querySelector('.list-container');
         const search = this.getAttribute('search');
         const id = this.getAttribute('id');
+        const pagination = shadow.querySelector('.pagination');
+
         
         if (search)
             this.search = search;
+        else
+            shadow.removeChild(pagination)
 
         //const book = document.createElement('book-component');
 
@@ -155,12 +169,37 @@ class ListComponent extends HTMLElement {
         apiCall
             .then(async (books) => {
                 const fragment = document.createDocumentFragment();
-                this.lastPage = books.total%10===0 ? this.page = books.total/10 : this.page = books.total/10+1;
+                this.lastPage = Math.floor(books.total%10===0 ? books.total/10 : books.total/10+1);
                 const count = books.total;
                 //pagination.setAttribute('last', this.lastPage);
                 wrapper.innerHTML = '';
 
-                await updateCartByUser()
+                await updateCartByUser();
+                const book = books.books;
+                console.log(this.lastPage)
+
+                /*for (let i=10*(this.page-1); i<10*this.page; i++) {
+                    console.log(book[i].isbn13)
+                    console.log(i);
+                    //if (book[i].isbn13 !== id) {
+                        setBook(book[i]);
+                        const bookElement = document.createElement('book-component');
+                        if (isLoaded) {
+
+                            bookElement.setAttribute('id', book[i].isbn13);
+                            const index = newarr.map(e => e.bookId).indexOf(book[i].isbn13);
+
+                            if (index >= 0) {
+                                const count = newarr[index].count;
+                                bookElement.setAttribute('isAdded', true);
+                                bookElement.setAttribute('count', count);
+                            }
+                        //}
+                        if (this.search) 
+                            bookElement.setAttribute('search', this.search)
+                        fragment.appendChild(bookElement);
+                    }
+                }*/
 
                 books.books.forEach(book => {
                     if (book.isbn13 !== id) {
@@ -200,6 +239,8 @@ class ListComponent extends HTMLElement {
         const id = this.getAttribute('id');
         wrapper.innerHTML = '';
         const total = document.createElement('p');
+        const pagination = shadow.querySelector('.pagination');
+        shadow.removeChild(pagination);
 
         await updateCartByUser();
 
@@ -233,7 +274,7 @@ class ListComponent extends HTMLElement {
 
     }
 
-    getUsersPage() {
+    /*getUsersPage() {
         const shadow = this.shadowRoot;
         const wrapper = shadow.querySelector('list-container');
         //const book = document.createElement('book-component');
@@ -247,7 +288,7 @@ class ListComponent extends HTMLElement {
                 })
         }*/
 
-        apiCall
+        /*apiCall
             .then((users) => {
                 const fragment = document.createDocumentFragment();
                 this.lastPage = users.length < 10;
@@ -272,7 +313,7 @@ class ListComponent extends HTMLElement {
             .catch((error) => {
                 console.log(error);
             })
-    }
+    }*/
 }
 
 customElements.define('list-component', ListComponent)

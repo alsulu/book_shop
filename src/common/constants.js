@@ -2,7 +2,7 @@ const appConstants = {
     routes: {
         index: '/',
         //book: '/book',
-        search: '/search/:search',
+        search: '/search?q=:search',
         cart: '/cart',
         wishlist: '/wishlist',
         profile: '/profile',
