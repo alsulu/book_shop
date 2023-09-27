@@ -2,8 +2,9 @@
 
 ! Проект в процессе разработки
 
-## Чтобы запустить проект:
-#### `npm install` `install -g json-server`
+### Чтобы запустить проект:
+#### `npm install`
+#### `install -g json-server`
 
 #### Запуск локального сервера:
 #### `npm run server`
