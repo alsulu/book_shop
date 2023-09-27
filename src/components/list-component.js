@@ -175,8 +175,8 @@ class ListComponent extends HTMLElement {
                 wrapper.innerHTML = '';
 
                 await updateCartByUser();
-                const book = books.books;
-                console.log(this.lastPage)
+                //const book = books.books;
+                //console.log(this.lastPage)
 
                 /*for (let i=10*(this.page-1); i<10*this.page; i++) {
                     console.log(book[i].isbn13)
@@ -246,7 +246,6 @@ class ListComponent extends HTMLElement {
 
         console.log('newarr', newarr)
         await Promise.all(newarr.map(async bookFromCart => {
-            console.log('bookfromcart', bookFromCart.bookId)
             await getBookByISBN(bookFromCart.bookId)
                 .then(book => {
                     if (book.isbn13 !== id) {
@@ -270,7 +269,6 @@ class ListComponent extends HTMLElement {
         wrapper.appendChild(total)
         if (!cartCount)
             wrapper.textContent = "Cart is empty"
-        console.log('wrapper', wrapper)
 
     }
 
