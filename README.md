@@ -3,15 +3,11 @@
 ! Проект в процессе разработки
 
 ## Чтобы запустить проект:
-
-#### `npm install
-npm install -g json-server`
+#### `npm install` `install -g json-server`
 
 #### Запуск локального сервера:
-
 #### `npm run server`
 
 #### Запуск приложения:
-
 #### `npm run start`
 
