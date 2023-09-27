@@ -4,14 +4,14 @@
 
 ## Чтобы запустить проект:
 
-### `npm install`
-### `npm install -g json-server`
+#### `npm install
+npm install -g json-server`
 
-### Запуск локального сервера:
+#### Запуск локального сервера:
 
-### `npm run server`
+#### `npm run server`
 
-### Запуск приложения:
+#### Запуск приложения:
 
-### `npm run start`
+#### `npm run start`
 
