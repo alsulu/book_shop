@@ -1,14 +1,18 @@
 # Сайт книжного онлайн-магазина
 
-! Проект в процессе разработки
+Проект в процессе разработки
 
 ## Чтобы запустить проект:
-#### `npm install`
-#### `install -g json-server`
-
+```
+npm install
+npm install -g json-server
+```
 ### Запуск локального сервера:
-#### `npm run server`
-
+```
+npm run server
+```
 ### Запуск приложения:
-#### `npm run start`
+```
+npm run start
+```
 
