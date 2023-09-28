@@ -16,3 +16,4 @@ npm run server
 npm run start
 ```
 
+Затем откройте [http://localhost:3000](http://localhost:3000) в браузере.
