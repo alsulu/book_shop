@@ -1,6 +1,3 @@
-import appConstants from '../common/constants'
-import { render } from '../router'
-
 class PaginationComponent extends HTMLElement {
     constructor(){
         super()

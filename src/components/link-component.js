@@ -1,5 +1,3 @@
-import appConstants from '../common/constants';
-//import { render } from '../router';
 import { goTo } from '../router';
 
 class LinkComponent extends HTMLElement {
@@ -68,7 +66,7 @@ class LinkComponent extends HTMLElement {
                 a {
                     padding: 5px;
                     margin: 5px 5px 5px 0;
-                    background-color: #333;
+                    background-color: #4f4f4f;
                     text-decoration: none;
                     color: #ccc;
                     cursor: default;

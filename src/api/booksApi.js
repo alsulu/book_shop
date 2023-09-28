@@ -8,9 +8,9 @@ export const getNewBooks = () =>
                 throw new Error;
             }
         })
-        /*.catch((error) => {
+        .catch((error) => {
             console.log(error);
-        })*/
+        })
 
 export const getBookByISBN = (id) => 
     fetch('https://api.itbook.store/1.0/books/' + id)
@@ -36,9 +36,9 @@ export const getBooksBySearch = (search, page) =>
                 throw new Error;
             }
         })
-        /*.catch((error) => {
+        .catch((error) => {
             console.log(error);
-        })*/
+        })
 
 export default {
     getNewBooks,

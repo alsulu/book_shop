@@ -1,2 +1,1 @@
-<div>Main template (new)</div>
-<list-component title="Lastest" list-type="book"></list-component>
+<list-component title="New" list-type="book"></list-component>

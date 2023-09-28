@@ -4,48 +4,24 @@ import Route from 'route-parser';
 import MainPage from '../pages/main.template';
 import CartPage from '../pages/cart.template';
 import BookPage from '../pages/book.template';
-import WishlistPage from '../pages/wishlist.template';
+//import WishlistPage from '../pages/wishlist.template';
 import SearchPage from '../pages/search.template';
-import ProfilePage from '../pages/profile.template';
 
 export const routes = {
     Main: new Route(appConstants.routes.index),
     Book: new Route(appConstants.routes.book),
     Search: new Route(appConstants.routes.search),
     Cart: new Route(appConstants.routes.cart),
-    Wishlist: new Route(appConstants.routes.wishlist),
-    Profile: new Route(appConstants.routes.profile),
+    //Wishlist: new Route(appConstants.routes.wishlist)
 }
 
 const routesWithPages = [
     { route: routes.Main, page: MainPage },
     { route: routes.Book, page: BookPage },
     { route: routes.Search, page: SearchPage },
-    //{ route: routes.BooksSearch, page: BooksPage },
-    { route: routes.Wishlist, page: WishlistPage },
-    //{ route: routes.UsersSearch, page: UsersPage },
-    { route: routes.Profile, page: ProfilePage },
+    //{ route: routes.Wishlist, page: WishlistPage },
     { route: routes.Cart, page: CartPage },
 ]
-
-/*export const render = (path) => {
-    let result = "<h1>404 error</h1>";
-
-    if (routes.Main.match(path))
-        result = MainPage();
-    else if (routes.Book.match(path))
-        result = BookPage();
-    else if (routes.Search.match(path))
-        result = SearchPage();
-    else if (routes.Cart.match(path))
-        result = CartPage();
-    else if (routes.Wishlist.match(path))
-        result = WishlistPage();
-    else if (routes.Profile.match(path))
-        result = ProfilePage();
-
-    document.querySelector("#app").innerHTML = result;
-}*/
 
 export const getPathRoute = (path) => {
     const target = routesWithPages.find(r => r.route.match(path))
@@ -61,7 +37,7 @@ export const getPathRoute = (path) => {
 }
 
 export const render = (path) => {
-    let result = '<h1>404</h1>'
+    let result = '<h1>Ошибка</h1>'
 
     const pathRoute = getPathRoute(path)
 

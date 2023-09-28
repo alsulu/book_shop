@@ -1,21 +1,19 @@
 import appConstants from '../common/constants';
-//import { render } from '../router';
+import { newarr, isLoaded, cartCount, updateCartByUser } from '../common/common';
 import { goTo, routes } from '../router';
-import { getCartByUser, addToCart, updateCart } from '../api/cartApi';
 
 class NavComponent extends HTMLElement {
     constructor() {
         super();
         const shadow = this.attachShadow({mode: 'open'});
         const wrapper = document.createElement('div');
-        //this.searchType = appConstants.search.types.book;
 
         wrapper.setAttribute('class', 'main-menu');
         this.links = [
             {href: appConstants.routes.index, name: 'home', class: 'home-link'},
-            {href: appConstants.routes.wishlist, name: 'wishlist', class: 'wishlist-link'},
-            {href: appConstants.routes.profile, name: 'profile', class: 'profile-link'},
-            {href: appConstants.routes.cart, name: 'cart', class: 'cart-link'}
+            {href: appConstants.routes.cart, name: 'cart', class: 'cart-link'},
+            //{href: appConstants.routes.wishlist, name: 'wishlist', class: 'wishlist-link'},
+            //{href: appConstants.routes.profile, name: 'profile', class: 'profile-link'}
         ]
 
         const style = document.createElement('style');
@@ -54,13 +52,6 @@ class NavComponent extends HTMLElement {
         })
         wrapper.appendChild(fragment);
 
-        const select = document.createElement('select');
-        select.setAttribute('class', 'select');
-        select.innerHTML = `
-            <option selected value="books">Books</option>
-            <option value="users">Users</option>
-        `;
-
         const search = document.createElement('input');
         search.setAttribute('class', 'global-search');
         search.addEventListener('keyup', (e) => {
@@ -81,16 +72,11 @@ class NavComponent extends HTMLElement {
         const input = shadow.querySelector('input');
         const search = this.getAttribute('search');
         input.value = search;
-        /*if (this.searchType === "book")
-            input.setAttribute('placeholder', 'Search book...')
-        else if (this.searchType === "user")
-            input.setAttribute('placeholder', 'Search user...')*/
     }
 
     async connectedCallback () {
         const shadow = this.shadowRoot;
         const searchText = this.getAttribute('search');
-        //this.searchType = this.getAttribute('type') ? this.getAttribute('type') : appConstants.search.types.book;
 
         if (searchText) {
             const input = shadow.querySelector('input');
@@ -98,40 +84,15 @@ class NavComponent extends HTMLElement {
         }
 
         const {pathname: path} = new URL(window.location.href);
-        const  link = this.links.find(l => l.href == path);
-
-        if (link) {
-            const linkElement = shadow.querySelector(`.${link.class}`);
-            //linkElement.setAttribute('selected', true)
-        }
-
-
-        /*getCartByUser(1)
-            .then(data => {
-                cartCount = 0;
-                console.log(data);
-                data.forEach(el => {
-                    newarr.push(el.bookId)
-                    cartCount++
-                })
-                cartData = {...data}
-                isLoaded = true;
-            })
-            .catch (err => console.log(err.message))*/
     }
 
     static get observedAttributes() {
-        return ['search', 'type']
+        return ['search']
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'search') {
             this.updateSearch()
-        }
-
-        if (name === 'type') {
-            //this.searchType = newValue;
-            this.updateSearch();
         }
     }
 }
