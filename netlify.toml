@@ -1,3 +1,6 @@
+[dev]
+  command = 'npm run server'
+
 [[redirects]]
   from = '/api/*'
   to = 'http://localhost:1111/:splat'
