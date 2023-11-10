@@ -30,10 +30,7 @@ class ListComponent extends HTMLElement {
             e.stopPropagation();
             if (this.page > 1) {
                 this.page--;
-                if (this.typeList === 'book')
-                    this.getBooksPage();
-                /*if (this.typeList = appConstants.lists.types.user)
-                    this.getUsersPage();*/
+                this.connectedCallback();
             }
         })
 

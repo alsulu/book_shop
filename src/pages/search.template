@@ -1,1 +1,1 @@
-<list-component title="search" search="${props.search}" book="" list-type="book"></list-component>
+<list-component title=\"Search results for '${props.search}'\" search="${props.search}" book="" list-type="book"></list-component>
