@@ -1,5 +1,5 @@
 const getData = (url) => 
-    fetch('http://localhost:1111' + url)
+    fetch('/api/' + url)
         .then((response) => {
             //console.log(response);
             if (response.ok)
@@ -13,7 +13,7 @@ const getData = (url) =>
         })
 
 const postData = (url, params={}) => 
-    fetch('http://localhost:1111' + url, {
+    fetch('/api/' + url, {
         method: 'POST',
         body: JSON.stringify(params),
         headers: {
@@ -33,7 +33,7 @@ const postData = (url, params={}) =>
         })
 
 const putData = (url, params={}) => 
-    fetch('http://localhost:1111' + url, {
+    fetch('/api/' + url, {
         method: 'PUT',
         body: JSON.stringify(params),
         headers: {
@@ -54,7 +54,7 @@ const putData = (url, params={}) =>
 
 
 const deleteData = (url, params={}) => 
-    fetch('http://localhost:1111' + url, {
+    fetch('/api/' + url, {
         method: 'DELETE',
         body: JSON.stringify(params),
         headers: {
