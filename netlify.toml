@@ -1,4 +1,4 @@
 [[redirects]]
   from = '/api/*'
-  to = 'npm run server && http://localhost:1111/:splat'
+  to = 'https://localhost:1111/:splat'
   status = 200
