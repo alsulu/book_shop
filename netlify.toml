@@ -1,3 +1,6 @@
+[build]
+  command = "npm run server && npm run build"
+
 [[redirects]]
   from = '/api/*'
   to = 'http://localhost:1111/:splat'
