@@ -1,5 +1,5 @@
 [build]
-  command = "npm run server && npm run build"
+  command = "npm run build && npm run server"
 
 [[redirects]]
   from = '/api/*'
