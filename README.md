@@ -1,4 +1,4 @@
-# Сайт книжного онлайн-магазина ([https://englishwords-reactjs.netlify.app/](https://englishwords-reactjs.netlify.app/))
+# Сайт книжного онлайн-магазина ([https://bookshop-vanillajs.netlify.app/](https://bookshop-vanillajs.netlify.app/))
 
 Проект в процессе разработки
 
