@@ -23,9 +23,5 @@
     "json-server": "^0.17.3",
     "route-parser": "^0.0.5"
   },
-  "engines" : { 
-    "npm" : "^10.2.3",
-    "node" : "^20.9.0"
-  },
   "homepage": "https://alsulu.github.io/bookshop"
 }
