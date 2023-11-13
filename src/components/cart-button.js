@@ -20,7 +20,6 @@ class CartButton extends HTMLElement {
         if (isAdded === "true") {
     
             const index = newarr.map(e => e.bookId).indexOf(id);
-            console.log(newarr[index]);
             const numb = newarr[index].id;
         
             wrapper.innerHTML = `<button class="button-minus">-</button>

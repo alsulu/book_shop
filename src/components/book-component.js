@@ -14,7 +14,7 @@ class BookComponent extends HTMLElement {
         wrapper.setAttribute('class', 'book-container');
 
         wrapper.innerHTML = `
-            <img class="book-container__cover" alt="book image">
+            <img class="book-container__cover" alt="book image" />
             <h4 class="book-container__title"></h4>
             <p class="book-container__subtitle"></p>
             <p class="book-container__price"></p>
@@ -37,7 +37,7 @@ class BookComponent extends HTMLElement {
         
         const wrapper = shadow.querySelector('.book-container');
         const cover = shadow.querySelector('.book-container__cover');
-        cover.setAttribute('src', book.image);
+        cover.src = book.image;
         const title = shadow.querySelector('.book-container__title');
         title.textContent = book.title;
         const subtitle = shadow.querySelector('.book-container__subtitle');

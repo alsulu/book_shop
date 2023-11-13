@@ -1,7 +1,6 @@
 export const getNewBooks = () => 
     fetch('https://api.itbook.store/1.0/new')
         .then((response) => {
-            //console.log(response);
             if (response.ok)
                 return response.json();
             else {
@@ -15,7 +14,6 @@ export const getNewBooks = () =>
 export const getBookByISBN = (id) => 
     fetch('https://api.itbook.store/1.0/books/' + id)
         .then((response) => {
-            //console.log(response);
             if (response.ok)
                 return response.json();
             else {
@@ -29,7 +27,6 @@ export const getBookByISBN = (id) =>
 export const getBooksBySearch = (search, page) => 
     fetch(`https://api.itbook.store/1.0/search/${search}/${page}`)
         .then((response) => {
-            //console.log(response);
             if (response.ok)
                 return response.json();
             else {

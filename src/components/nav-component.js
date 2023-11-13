@@ -54,6 +54,7 @@ class NavComponent extends HTMLElement {
 
         const search = document.createElement('input');
         search.setAttribute('class', 'global-search');
+        search.setAttribute('placeholder', 'search...')
         search.addEventListener('keyup', (e) => {
             e.stopPropagation;
             if (e.key === 'Enter') {
