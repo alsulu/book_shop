@@ -5,20 +5,35 @@ class CartButton extends HTMLElement {
     constructor() {
         super();
         const shadow = this.attachShadow({mode: 'open'});
+
+        const price = document.createElement('p');
+        price.setAttribute('class', 'book-price')
+
         const wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'cart-button-container')
+
+        shadow.appendChild(price);
         shadow.appendChild(wrapper);
     }
 
     connectedCallback() {
         const shadow = this.shadowRoot;
+        const priceCont = shadow.querySelector('.book-price');
         const wrapper = shadow.querySelector('.cart-button-container');
-        const isAdded = this.getAttribute('isAdded');
+        const isAdded = this.getAttribute('isAdded') || false;
         let count = this.getAttribute('count');
         const id = this.getAttribute('id');
+        const ifCart = this.getAttribute('ifCart') || false;
+        const bookPrice = this.getAttribute('price');
+
+        if (ifCart === "true") {
+            const pricePerPiece = bookPrice.slice(1);
+            priceCont.textContent = `$${(+pricePerPiece * +count).toFixed(2)}`;
+        }
+        else
+            priceCont.textContent = bookPrice;
 
         if (isAdded === "true") {
-    
             const index = newarr.map(e => e.bookId).indexOf(id);
             const numb = newarr[index].id;
         
@@ -51,7 +66,7 @@ class CartButton extends HTMLElement {
             })
         }
         else {
-            wrapper.innerHTML = '<button class="add-to-cart-button">Add To Cart</button>';
+            wrapper.innerHTML = `<button class="add-to-cart-button">Add To Cart</button>`;
             const button = wrapper.querySelector('.add-to-cart-button');
         
             button.addEventListener('click', e => {

@@ -17,8 +17,6 @@ class BookComponent extends HTMLElement {
             <img class="book-container__cover" alt="book image" />
             <h4 class="book-container__title"></h4>
             <p class="book-container__subtitle"></p>
-            <p class="book-container__price"></p>
-            <div class="book-container__button-container"></div>
         `
 
         shadow.appendChild(wrapper);
@@ -31,10 +29,8 @@ class BookComponent extends HTMLElement {
         let isAdded = this.getAttribute('isAdded') || false;
         const book = getBook(id);
         const ifCart = this.getAttribute('ifCart') || false;
-        
         let count = this.getAttribute('count') || "0";
 
-        
         const wrapper = shadow.querySelector('.book-container');
         const cover = shadow.querySelector('.book-container__cover');
         cover.src = book.image;
@@ -42,30 +38,21 @@ class BookComponent extends HTMLElement {
         title.textContent = book.title;
         const subtitle = shadow.querySelector('.book-container__subtitle');
         subtitle.textContent = book.subtitle;
-        const price = shadow.querySelector('.book-container__price');
-
-        if (ifCart) {
-            const pricePerPiece = book.price.slice(1);
-            price.textContent = "$" + (+pricePerPiece * +count).toFixed(2);
-        }
-        else
-            price.textContent = book.price;
-        
-        
-        const buttonDiv = shadow.querySelector('.book-container__button-container');
         
         const cartButton = document.createElement('cart-button');
         cartButton.setAttribute('count', count);
         cartButton.setAttribute('id', book.isbn13);
         cartButton.setAttribute('isAdded', isAdded);
-
-        buttonDiv.appendChild(cartButton);
+        cartButton.setAttribute('ifCart', ifCart);
+        cartButton.setAttribute('price', book.price)
         
         wrapper.addEventListener('click', (e) => {
             e.stopPropagation()
             const url = routes.Book.reverse({book: id})
             goTo(url)
         })
+
+        wrapper.appendChild(cartButton);
     }
 
 }
